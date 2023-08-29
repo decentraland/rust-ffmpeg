@@ -5,6 +5,8 @@ use std::ptr;
 
 use libc;
 
+use crate::util::usize_select::usize_fixed;
+
 use super::common::Context;
 use super::destructor;
 use codec::traits;
@@ -111,7 +113,7 @@ impl Output {
         let index = match existing {
             Some(index) => index,
             None => unsafe {
-                let ptr = av_mallocz(size_of::<AVChapter>())
+                let ptr = av_mallocz(size_of::<AVChapter>() as usize_fixed)
                     .as_mut()
                     .ok_or(Error::Bug)?;
                 let mut nb_chapters = (*self.as_ptr()).nb_chapters as i32;

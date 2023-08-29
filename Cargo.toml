@@ -107,11 +107,8 @@ rpi = []
 [dependencies]
 libc     = "0.2"
 bitflags = "1.2"
+ffmpeg-sys-next = { git = "https://github.com/leanmendoza/rust-ffmpeg-sys", branch = "make_optional_size_t_is_usize" }
 
 [dependencies.image]
 version  = "0.23"
 optional = true
-
-[dependencies.ffmpeg-sys-next]
-version = "6.0.1"
-default-features = false
