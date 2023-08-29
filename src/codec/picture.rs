@@ -4,8 +4,10 @@ use std::slice;
 
 use ffi::*;
 use format;
-use libc::{c_int, size_t};
+use libc::c_int;
 use Error;
+
+use crate::util::usize_select::size_t_fixed;
 
 pub struct Picture<'a> {
     ptr: *mut AVPicture,
@@ -58,7 +60,7 @@ impl<'a> Picture<'a> {
 
     pub fn new(format: format::Pixel, width: u32, height: u32) -> Result<Self, Error> {
         unsafe {
-            let ptr = av_malloc(mem::size_of::<AVPicture>() as size_t) as *mut AVPicture;
+            let ptr = av_malloc(mem::size_of::<AVPicture>() as size_t_fixed) as *mut AVPicture;
 
             match avpicture_alloc(ptr, format.into(), width as c_int, height as c_int) {
                 0 => Ok(Picture {
