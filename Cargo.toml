@@ -25,6 +25,7 @@ ffmpeg43 = []
 ffmpeg42 = []
 ffmpeg41 = []
 ffmpeg4 = []
+fix_usize_size_t = []
 
 static = ["ffmpeg-sys-next/static"]
 build  = ["static", "ffmpeg-sys-next/build"]
